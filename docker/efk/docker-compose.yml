@@ -1,0 +1,20 @@
+elasticsearch:
+   image: hyku/elasticsearch:1.0
+   restart: always
+   ports:
+      - 9300:9300
+      - 9200:9200
+
+flume:
+   image: hyku/flume:1.0
+   restart: always
+   links:
+     - elasticsearch
+
+kibana:
+   image: hyku/kibana:1.0
+   restart: always
+   ports:
+      - 5601:5601
+   links:
+      - elasticsearch
